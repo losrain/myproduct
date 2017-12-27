@@ -18,6 +18,7 @@
 
 
 <script>
+import axios from 'axios'
 export default {
   data() {
     var checkAge = (rule, value, callback) => {
@@ -72,7 +73,17 @@ export default {
     submitForm(formName) {
       this.$refs[formName].validate(valid => {
         if (valid) {
-          alert("submit!");
+          axios.get('http://localhost:7777/login', {
+            params: {
+              ID: 12345
+            }
+          })
+          .then(function (response) {
+            console.log(response);
+          })
+          .catch(function (error) {
+            console.log(error);
+          });
         } else {
           console.log("error submit!!");
           return false;
