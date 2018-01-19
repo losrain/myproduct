@@ -33,10 +33,9 @@ export default {
   methods: {
     submitForm() {
       var self = this;
-      this.$http.axios
-        .post("http://localhost:3300/signin", self.ruleForm2)
+      this.$http("http://localhost:3300/signin", self.ruleForm2)
         .then(function(response) {
-          if(res.data.success){
+          if(res.success){
             self.$router.push({name: 'acticelist'})
           }
         })

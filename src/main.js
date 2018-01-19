@@ -7,10 +7,22 @@ import ElementUI from 'element-ui'
 import axios from "axios";
 var instance = axios.create();
 instance.defaults.withCredentials = true;
+function myAjax(url, data){
+  return new Promise(function(resolve, reject){
+    instance.post(url, data)
+    .then(function(res) {
+      resolve(res.data)
+    })
+    .catch(function(error) {
+      reject(error);
+    });
+  })
+}
 import 'element-ui/lib/theme-chalk/index.css'
 Vue.use(ElementUI)
 Vue.config.productionTip = false
-Vue.prototype.$http = instance;
+
+Vue.prototype.$http = myAjax;
 /* eslint-disable no-new */
 new Vue({
   el: '#app',

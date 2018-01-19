@@ -33,10 +33,9 @@ export default {
     },
     submitForm() {
       var self = this;
-      self.$http
-        .post("http://localhost:3300/login", self.ruleForm2)
+      self.$http("http://localhost:3300/login", self.ruleForm2)
         .then(function(res) {
-          if(res.data.success){
+          if(res.success){
             self.$router.push({name: 'acticelist'});
           };
         })
